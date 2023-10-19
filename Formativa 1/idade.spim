@@ -1,0 +1,30 @@
+.data
+text01: .asciiz "Forneça sua idade: "
+text02: .asciiz "Sua idade é "
+
+.text
+main:
+    li      $v0,    4
+    la      $a0,    text01
+    syscall                             # Imprimir o text01
+
+
+    li      $v0,    5
+    syscall                             # Leitura de um inteiro
+
+    move    $t0,    $v0                 # Movendo a inteiro para um variavel temporaria
+
+    li      $v0,    4
+    la      $a0,    text02
+    syscall                             # Imprimir o text02
+
+    li      $v0,    1
+    move    $a0,    $t0
+    syscall                             # Imprimir o inteiro
+
+    li      $v0,    10
+    syscall                             # Encerrar o programa
+
+
+
+

@@ -1,0 +1,30 @@
+.data
+nome: .asciiz "Qual o seu nome? "
+ola: .asciiz "Olá! Sr "
+nomeStorage: .space 32
+.text
+main:
+    li      $v0,    4
+    la      $a0,    nome
+    syscall 
+
+    li      $v0,    8
+    la      $a0,    nomeStorage
+    la      $a1,    25
+    syscall 
+
+    li      $v0,    4
+    la      $a0,    ola
+    syscall                         # Imprimir msg ola
+
+    li      $v0,    4
+    la      $a0,    nomeStorage
+    syscall                         # Imprimir msg nomeStorage
+
+
+    li      $v0,    10
+    syscall                         # Encerrar o programa
+
+
+
+
