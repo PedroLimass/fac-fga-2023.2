@@ -1,0 +1,20 @@
+.data
+    # Dados
+    value1: .word 3328  # Representa 3.328 em decimal
+
+.text
+    # Código
+    main:
+        lw $t4, value1   # Carrega o valor decimal 3.328 em $t4
+        li $t5, 0        # Carrega zero em $t5
+
+        nor $t6, $t4, $t5 # Executa NOR entre $t4 (3.328) e $t5 (0), resultado em $t6
+
+        # O resultado estará em $t6
+        # O NOR de 3.328 e 0 resultará em um valor específico em complemento de 2
+
+        # Sua lógica adicional aqui
+
+        # Finalização do programa
+        li $v0, 10        # Código de saída do programa
+        syscall
