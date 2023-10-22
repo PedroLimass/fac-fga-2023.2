@@ -1,0 +1,35 @@
+.data
+    value:  .word 0x3C7A9B2E  # Exemplo de um valor | 00111100011110101001101100101110
+
+.text
+.globl main
+
+main:
+    # Carrega o valor da memória
+    lw $t0, value
+
+    # Máscara para os bits menos significativos (LSBs)
+    li $t1, 0x0000FFFF  # Máscara de 16 bits | 00000000000000001111111111111111
+
+    # Aplica a máscara para manter apenas os LSBs
+    and $t0, $t0, $t1
+
+    # Agora $t0 contém apenas os bits menos significativos
+
+    # Saída do resultado
+    li $v0, 1
+    move $a0, $t0
+    syscall
+
+    # Sair do programa
+    li $v0, 10
+    syscall
+
+# Valor retornado: 39726 em decimal
+# Conta feita com mascara AND
+# 00111100011110101001101100101110
+# 00000000000000001111111111111111
+# --------------------------------
+# 00000000000000001001101100101110
+# Em 16 digitos fica
+# 1001101100101110

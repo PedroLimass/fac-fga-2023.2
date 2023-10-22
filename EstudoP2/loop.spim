@@ -1,0 +1,38 @@
+.data
+    counter:    .word 10  # Valor inicial do contador
+    result_msg: .asciiz "Contagem concluída:  "
+    lineBraker: .asciiz " \n"
+
+.text
+.globl main
+
+main:
+    # Inicialize o contador
+    lw $t0, counter
+
+loop:
+
+    # Imprima uma quebra de linha
+    li $v0, 4
+    la $a0, lineBraker
+    syscall
+
+    # Imprima o valor do contador
+    li $v0, 4
+    la $a0, result_msg
+    syscall
+
+    # Imprimi o valor atual antes de decrementar
+    move $a0, $t0
+    li $v0, 1
+    syscall
+
+    # Decrementar o contador
+    addi $t0, $t0, -1  # Decrementar o contador em 1
+
+    # Verificar se o contador chegou a 0
+    bne $t0, $zero, loop
+
+    # Sair do programa
+    li $v0, 10
+    syscall

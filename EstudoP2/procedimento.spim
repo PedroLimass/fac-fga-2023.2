@@ -1,0 +1,24 @@
+.text
+.globl main
+
+# Função para adicionar dois números
+add_numbers:
+    add $t0, $a0, $a1  # $t0 = $a0 + $a1
+    jr $ra  # Retorno para o endereço de retorno
+
+main:
+    # Chamando a função add_numbers
+    li $a0, 5  # Primeiro argumento (número 5)
+    li $a1, 7  # Segundo argumento (número 7)
+    jal add_numbers
+
+    # O resultado estará em $t0 após a chamada da função
+
+    # Saída do resultado
+    li $v0, 1
+    move $a0, $t0
+    syscall
+
+    # Sair do programa
+    li $v0, 10
+    syscall
